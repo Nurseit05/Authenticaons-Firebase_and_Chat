@@ -9,19 +9,34 @@ import { Context } from '../index';
 const AppRouter = () => {
     const {auth} = useContext(Context)
     const [user] = useAuthState(auth);
-    return user ? (
+
+    return (
         <Routes>
-            {privateRoutes.map(({path, element}) => 
+            {user ? 
+                privateRoutes.map(({path, element}) => 
                 <Route key={path} path={path} element={element} />
-            )}
-        </Routes>
-    ) : (
-        <Routes>
-            {publicRoutes.map(({path, element}) => 
+                )
+                :
+                publicRoutes.map(({path, element}) => 
                 <Route key={path} path={path} element={element} />
-            )}
-        </Routes>
+                )
+            }
+        </Routes>  
     )
+
+    // return user ? (
+    //     <Routes>
+    //         {privateRoutes.map(({path, element}) => 
+    //             <Route key={path} path={path} element={element} />
+    //         )}
+    //     </Routes>
+    // ) : (
+    //     <Routes>
+    //         {publicRoutes.map(({path, element}) => 
+    //             <Route key={path} path={path} element={element} />
+    //         )}
+    //     </Routes>
+    // )
 };
 
 export default AppRouter;

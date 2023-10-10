@@ -7,20 +7,20 @@ export const publicRoutes = [
     {
         path: LOGIN_ROUTER,
         element: <Login/>
-    }, 
-    {
-        path: '*',
-        element: <Navigate to={LOGIN_ROUTER} replace />
     }
+    // {
+    //     path: '*',
+    //     element: <Navigate to={LOGIN_ROUTER} replace />
+    // }
 ]
 
 export const privateRoutes = [
     {
         path: CHAT_ROUTER,
         element: <Chat/>
-    }, 
-    {
-        path: '*',
-        element: <Navigate to={CHAT_ROUTER} replace />
     }
+    // {
+    //     path: '*',
+    //     element: <Navigate to={CHAT_ROUTER} replace />
+    // }
 ]
