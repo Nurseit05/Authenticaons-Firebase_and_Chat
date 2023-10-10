@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import React, { useContext } from 'react';
 import {useAuthState} from 'react-firebase-hooks/auth'
 
@@ -12,22 +12,21 @@ const AppRouter = () => {
     
     const {auth} = useContext(Context)
     const [user] = useAuthState(auth);
+    const navigate = useNavigate(); // Получаем функцию для навигации
 
+    if (user) {
+      navigate('/chat');
+    } else {
+      navigate('/login');
+    }
+  
     return (
-        <Routes>
-            {user ? (
-                <>
-                    <Route path={'/chat'} element={<Chat />} />
-                    <Route path="*" element={<Navigate to="/chat" />} />
-                </>
-            ) : (
-                <>
-                    <Route path={'/login'} element={<Login />} />
-                    <Route path="*" element={<Navigate to="/login" />} />
-                </>
-            )}
-        </Routes>
-    )
+      <Routes>
+        <Route path="/chat" element={<Chat />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    );
+
 
     // return user ? (
     //     <Routes>
